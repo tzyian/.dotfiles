@@ -129,15 +129,14 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 # for perf
 export PATH="/usr/lib/linux-tools/5.15.0-122-generic/:$PATH"
 export PATH="/usr/local/cuda/bin:$PATH"
-export PATH="~/apps/:$PATH"
-export PATH=$PATH:/usr/local/go/bin
+export PATH="$PATH:/usr/local/go/bin"
 
 # java (for jdtls)
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-export PATH=$JAVA_HOME/bin:$PATH
+export PATH="$JAVA_HOME/bin:$PATH"
 . "$HOME/.cargo/env"
 
-# pyenv
+# # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
@@ -159,9 +158,6 @@ function y() {
     rm -f -- "$tmp"
 }
 
-# opam configuration
-test -r /home/ian/.opam/opam-init/init.sh && . /home/ian/.opam/opam-init/init.sh >/dev/null 2>/dev/null || true
-
 ## (Unneeded) To use VcXsrv, but breaks vim in pe nodes somehow
 # export DISPLAY=$(ip route list default | awk '{print $3}'):0
 # export LIBGL_ALWAYS_INDIRECT=1
@@ -177,5 +173,3 @@ test -r /home/ian/.opam/opam-init/init.sh && . /home/ian/.opam/opam-init/init.sh
 export PATH="$HOME/.ghcup/bin:$PATH"
 
 eval "$(starship init bash)"
-eval "$(zoxide init bash)"
-eval "$(fzf --bash)"

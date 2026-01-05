@@ -1,6 +1,6 @@
 alias forti="sudo openfortivpn webvpn.comp.nus.edu.sg:443 -u e0958630"
 alias update="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y"
-alias updateapp="pyenv update && rustup update && pnpm update -g"
+alias updateapp="rustup update && pnpm update -g && uv self update"
 
 alias nvimdiff="nvim -d"
 alias lg=lazygit
@@ -21,7 +21,8 @@ alias mountpdc="sshfs -o allow_other e0958630@soctf-pdc-009.d1.comp.nus.edu.sg:/
 alias mountdebug="sshfs -odebug,sshfs_debug,loglevel=debug  e0958630@soctf-pdc-009.d1.comp.nus.edu.sg:/nfs/home/e0958630/ /home/ian/pdc"
 
 alias sumatra="SumatraPDF.exe"
-alias fzfp="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+alias fzfo="nvim \$(fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}')"
 
 alias ccf="codecrafters"
 alias ccft="codecrafters test"
