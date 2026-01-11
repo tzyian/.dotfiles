@@ -124,11 +124,62 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export EDITOR=nvim
 export BROWSER=~/.local/bin/firefox
 
+alias l='eza  --icons --group-directories-first -F'
+alias ll='eza --icons --group-directories-first --git -lhF'
+alias la='eza --icons --group-directories-first --git -lahF'
+alias lt='eza --icons -F --tree --level=2'
+
+COPYTOOL="clip.exe"
+
+# fzf file search (CTRL-T)
+export FZF_CTRL_T_OPTS="
+    --walker file,dir
+    --walker-skip .git,node_modules,target
+    --preview 'if [ -d {} ]; then eza --icons -F --tree --level=2 --color=always {}; else bat --color=always --style=numbers --line-range=:500 {}; fi'
+    --bind \"ctrl-y:execute-silent(echo -n {} | $COPYTOOL)+abort\"
+    --bind 'ctrl-/:change-preview-window(hidden|)'
+    --header 'CTRL-Y: Copy Path | CTRL-/: Toggle Preview'"
+
+# fzf command history (CTRL-R)
+export FZF_CTRL_R_OPTS="
+    --preview=""
+    --bind \"ctrl-y:execute-silent(echo -n {} | $COPYTOOL)+abort\"
+    --header 'CTRL-Y: Copy Command'"
+
+# fzf cd (ALT-C)
+export FZF_ALT_C_OPTS="
+    --walker-skip .git,node_modules,target
+    --preview 'eza --icons -F --tree --level=2 --color=always {}'
+    --bind 'ctrl-y:execute-silent(echo -n {2..} | clip.exe)+abort'
+    --bind 'ctrl-/:change-preview-window(hidden|)'
+    --header 'CTRL-Y: Copy Path | CTRL-/: Toggle Preview'"
+
+# zi options
+export _ZO_FZF_OPTS="
+    --no-sort
+    --height 40%
+    --layout=reverse
+    --preview 'eza --icons -F --tree --level=2 --color=always {2..}'
+    --bind 'ctrl-/:change-preview-window(hidden|)'"
+
+# Function to make yazi cd on quit
+function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(cat -- "$tmp")" && [ "$cwd" != "" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
+}
+
 # nvim
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
 # for perf
 export PATH="/usr/lib/linux-tools/5.15.0-122-generic/:$PATH"
 export PATH="/usr/local/cuda/bin:$PATH"
+
+# go bin
 export PATH="$PATH:/usr/local/go/bin"
 
 # java (for jdtls)
@@ -148,16 +199,6 @@ if [ -d "$FNM_PATH" ]; then
     eval "$(fnm env)"
 fi
 
-# Function to make yazi cd on quit
-function y() {
-    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-    yazi "$@" --cwd-file="$tmp"
-    if cwd="$(cat -- "$tmp")" && [ "$cwd" != "" ] && [ "$cwd" != "$PWD" ]; then
-        builtin cd -- "$cwd"
-    fi
-    rm -f -- "$tmp"
-}
-
 ## (Unneeded) To use VcXsrv, but breaks vim in pe nodes somehow
 # export DISPLAY=$(ip route list default | awk '{print $3}'):0
 # export LIBGL_ALWAYS_INDIRECT=1
@@ -168,8 +209,3 @@ function y() {
 
 . "$HOME/.asdf/asdf.sh"
 . "$HOME/.asdf/completions/asdf.bash"
-
-[ -f "/home/ian/.ghcup/env" ] && . "/home/ian/.ghcup/env" # ghcup-env
-export PATH="$HOME/.ghcup/bin:$PATH"
-
-eval "$(starship init bash)"

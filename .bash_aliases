@@ -13,16 +13,19 @@ alias srcb="source ~/.bashrc"
 
 alias nv="nvim"
 alias nvimdiff="nvim -d"
-alias lazyvim="NVIM_APPNAME=lazyvim nvim"
-alias lazy="NVIM_APPNAME=lazyvim nvim"
-alias astro="NVIM_APPNAME=astronvim nvim"
+# alias lazyvim="NVIM_APPNAME=lazyvim nvim"
+# alias lazy="NVIM_APPNAME=lazyvim nvim"
+# alias astro="NVIM_APPNAME=astronvim nvim"
 
 alias mountpdc="sshfs -o allow_other e0958630@soctf-pdc-009.d1.comp.nus.edu.sg:/nfs/home/e0958630/ ~/pdc"
 alias mountdebug="sshfs -odebug,sshfs_debug,loglevel=debug  e0958630@soctf-pdc-009.d1.comp.nus.edu.sg:/nfs/home/e0958630/ /home/ian/pdc"
 
 alias sumatra="SumatraPDF.exe"
-alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
-alias fzfo="nvim \$(fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}')"
+
+function fzfo() {
+  local selection=$(fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}')
+  [ -n "$selection" ] && nvim "$selection"
+}
 
 alias ccf="codecrafters"
 alias ccft="codecrafters test"
