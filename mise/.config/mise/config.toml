@@ -1,0 +1,42 @@
+[tools]
+### cli tools
+lazygit = "latest"
+fzf = "latest"
+zoxide = "latest"
+eza = "latest"
+fd = "latest"
+bat = "latest"
+yazi = "latest"
+ripgrep = "latest"
+# ripgrep-all = "latest"
+difftastic = "latest"
+gdu = "latest"
+tokei = "latest"
+jq = "latest"
+
+### UI
+starship = "latest"
+glow = "latest"
+
+### Tools
+pnpm = "latest"
+uv = "latest"
+cargo-binstall = "latest"
+
+### Languages
+node = "lts"
+elixir = "1.19"
+erlang = "28"
+rust = "latest"
+go = "latest"
+
+### Other stuff
+# visidata                # not managed
+# tealdr = "latest"       # not included
+# delta = "latest"        # git diffs
+# duf = "latest"          # df
+# sd = "latest"           # sed
+# just = "latest"         # make
+# xh = "latest"           # curl
+# fx = "latest"           # json
+# yq = "latest"           # yaml

@@ -179,9 +179,6 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH="/usr/lib/linux-tools/5.15.0-122-generic/:$PATH"
 export PATH="/usr/local/cuda/bin:$PATH"
 
-# go bin
-export PATH="$PATH:/usr/local/go/bin"
-
 # java (for jdtls)
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 export PATH="$JAVA_HOME/bin:$PATH"
@@ -192,13 +189,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# fnm
-FNM_PATH="/home/ian/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-    export PATH="$FNM_PATH:$PATH"
-    eval "$(fnm env)"
-fi
-
 ## (Unneeded) To use VcXsrv, but breaks vim in pe nodes somehow
 # export DISPLAY=$(ip route list default | awk '{print $3}'):0
 # export LIBGL_ALWAYS_INDIRECT=1
@@ -207,5 +197,4 @@ fi
 ## To allow X11 forwarding from local to pe nodes
 # export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0.0
 
-. "$HOME/.asdf/asdf.sh"
-. "$HOME/.asdf/completions/asdf.bash"
+eval "$(/home/ian/.local/bin/mise activate bash)"

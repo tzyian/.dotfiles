@@ -1,0 +1,17 @@
+[[plugin.prepend_fetchers]]
+id  = "git"
+url = "*"
+run = "git"
+
+[[plugin.prepend_fetchers]]
+id  = "git"
+url = "*/"
+run = "git"
+
+[[plugin.prepend_previewers]]
+mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}"
+run  = "ouch"
+
+# [[plugin.prepend_previewers]]
+# url = "*.md"
+# run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"'
