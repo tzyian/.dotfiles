@@ -13,18 +13,17 @@ difftastic = "latest"
 gdu = "latest"
 tokei = "latest"
 jq = "latest"
+cargo-binstall = "latest"
+tmux = "latest"
 
 ### UI
 starship = "latest"
 glow = "latest"
 
-### Tools
-pnpm = "latest"
-uv = "latest"
-cargo-binstall = "latest"
-
 ### Languages
 node = "lts"
+uv = "latest"
+pnpm = "latest"
 elixir = "1.19"
 erlang = "28"
 rust = "latest"
