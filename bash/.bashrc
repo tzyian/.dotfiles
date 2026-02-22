@@ -125,6 +125,7 @@ export EDITOR=nvim
 export BROWSER=~/.local/bin/firefox
 
 alias l='eza  --icons --group-directories-first -F'
+alias ls='eza  --icons --group-directories-first -F'
 alias ll='eza --icons --group-directories-first --git -lhF'
 alias la='eza --icons --group-directories-first --git -lahF'
 alias lt='eza --icons -F --tree --level=2'
@@ -136,21 +137,21 @@ export FZF_CTRL_T_OPTS="
     --walker file,dir
     --walker-skip .git,node_modules,target
     --preview 'if [ -d {} ]; then eza --icons -F --tree --level=2 --color=always {}; else bat --color=always --style=numbers --line-range=:500 {}; fi'
-    --bind \"ctrl-y:execute-silent(echo -n {} | $COPYTOOL)+abort\"
+    --bind \"ctrl-y:execute-silent(echo -n {} | "$COPYTOOL")+abort\"
     --bind 'ctrl-/:change-preview-window(hidden|)'
     --header 'CTRL-Y: Copy Path | CTRL-/: Toggle Preview'"
 
 # fzf command history (CTRL-R)
 export FZF_CTRL_R_OPTS="
     --preview=""
-    --bind \"ctrl-y:execute-silent(echo -n {} | $COPYTOOL)+abort\"
+    --bind \"ctrl-y:execute-silent(echo -n {} | "$COPYTOOL")+abort\"
     --header 'CTRL-Y: Copy Command'"
 
 # fzf cd (ALT-C)
 export FZF_ALT_C_OPTS="
     --walker-skip .git,node_modules,target
     --preview 'eza --icons -F --tree --level=2 --color=always {}'
-    --bind 'ctrl-y:execute-silent(echo -n {2..} | clip.exe)+abort'
+    --bind 'ctrl-y:execute-silent(echo -n {2..} | "$COPYTOOL")+abort'
     --bind 'ctrl-/:change-preview-window(hidden|)'
     --header 'CTRL-Y: Copy Path | CTRL-/: Toggle Preview'"
 
@@ -189,6 +190,12 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+export PNPM_HOME="/home/ian/.local/share/pnpm"
+case ":$PATH:" in
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
 ## (Unneeded) To use VcXsrv, but breaks vim in pe nodes somehow
 # export DISPLAY=$(ip route list default | awk '{print $3}'):0
 # export LIBGL_ALWAYS_INDIRECT=1
@@ -198,3 +205,8 @@ eval "$(pyenv init -)"
 # export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0.0
 
 eval "$(/home/ian/.local/bin/mise activate bash)"
+eval "$(fzf --bash)"
+eval "$(uv generate-shell-completion bash)"
+eval "$(uvx --generate-shell-completion bash)"
+eval "$(starship init bash)"
+eval "$(zoxide init bash)"

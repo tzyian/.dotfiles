@@ -1,41 +1,24 @@
-alias forti="sudo openfortivpn webvpn.comp.nus.edu.sg:443 -u e0958630"
-alias update="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y"
-alias updateapp="rustup update && pnpm update -g && uv self update"
-
-alias nvimdiff="nvim -d"
-alias lg=lazygit
-alias fd=fdfind
-alias tm=tmux
-
-alias nvba="nvim ~/.bash_aliases && source ~/.bashrc"
-alias nvrc="nvim ~/.bashrc && source ~/.bashrc"
-alias srcb="source ~/.bashrc"
+#!/bin/sh
 
 alias nv="nvim"
 alias nvimdiff="nvim -d"
+alias lg=lazygit
+alias tm=tmux
+
 # alias lazyvim="NVIM_APPNAME=lazyvim nvim"
 # alias lazy="NVIM_APPNAME=lazyvim nvim"
 # alias astro="NVIM_APPNAME=astronvim nvim"
 
-alias mountpdc="sshfs -o allow_other e0958630@soctf-pdc-009.d1.comp.nus.edu.sg:/nfs/home/e0958630/ ~/pdc"
-alias mountdebug="sshfs -odebug,sshfs_debug,loglevel=debug  e0958630@soctf-pdc-009.d1.comp.nus.edu.sg:/nfs/home/e0958630/ /home/ian/pdc"
-
-alias sumatra="SumatraPDF.exe"
-
 function fzfo() {
   local selection=$(fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}')
-  [ -n "$selection" ] && nvim "$selection"
+  [ "$selection" != "" ] && nvim "$selection"
 }
-
-alias ccf="codecrafters"
-alias ccft="codecrafters test"
-alias ccfs="codecrafters submit"
-# alias tmux='systemd-run --scope --user tmux'
-# alias bat="bat --pager=never"
 
 # alias nvcc="/usr/local/cuda/bin/nvcc"
 
+# ========================
 # Git aliases
+# ========================
 function gc() {
   if [ $# -eq 0 ]; then
     echo "Usage: gc [-b] <branch-name>"
@@ -50,6 +33,9 @@ function gc() {
   if [ "$1" = "-b" ]; then
     create_new=1
     shift
+  elif [ "$1" = "-" ]; then
+    git switch -
+    return $?
   fi
 
   if [ $# -ne 1 ]; then

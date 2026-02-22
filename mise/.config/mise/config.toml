@@ -19,6 +19,7 @@ tmux = "latest"
 ### UI
 starship = "latest"
 glow = "latest"
+neovim = "latest"
 
 ### Languages
 node = "lts"
@@ -28,10 +29,11 @@ elixir = "1.19"
 erlang = "28"
 rust = "latest"
 go = "latest"
+typst = "latest"
 
 ### Other stuff
-# visidata                # not managed
-# tealdr = "latest"       # not included
+# visidata                # not included
+# tealdeer = "latest"     # not included
 # delta = "latest"        # git diffs
 # duf = "latest"          # df
 # sd = "latest"           # sed
