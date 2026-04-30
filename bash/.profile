@@ -9,7 +9,7 @@
 #umask 022
 
 # if running bash
-if [ "$BASH_VERSION" != "" ]; then
+if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
         . "$HOME/.bashrc"
@@ -25,3 +25,6 @@ fi
 if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
+
+# This is here so it's sourced in non-interactive shells
+eval "$($HOME/.local/bin/mise activate bash)"
