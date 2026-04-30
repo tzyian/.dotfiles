@@ -24,12 +24,13 @@ neovim = "latest"
 ### Languages
 node = "lts"
 uv = "latest"
-pnpm = "latest"
 elixir = "1.19"
 erlang = "28"
 rust = "latest"
 go = "latest"
+golangci-lint = "latest"
 typst = "latest"
+"npm:pnpm" = "latest"
 
 ### Other stuff
 # visidata                # not included
