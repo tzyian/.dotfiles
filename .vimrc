@@ -81,12 +81,24 @@ abbr souf System.out.printf("");<esc>2hi
 set lazyredraw
 
 " Keep a backup copy of the file being edited
+
+let s:undo_dir = expand($HOME . '/.vim/undo')
+let s:backup_dir = expand($HOME . '/.vim/backup')
+
+if !isdirectory(s:undo_dir)
+    call mkdir(s:undo_dir, 'p', 0700)
+endif
+
+if !isdirectory(s:backup_dir)
+    call mkdir(s:backup_dir, 'p', 0700)
+endif
+
 set backup
-set backupdir=~/.vim/files/backup
+set backupdir=s:backup_dir
 
 " Save undo history
 set undofile
-set undodir=$HOME/.vim/files/undo/
+set undodir=s:undo_dir
 
 " Search options
 set incsearch
