@@ -1,13 +1,13 @@
-alias update="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y "
-# mise up --bump
-alias cacheclear="pip cache purge && pnpm store prune"
+alias update="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y"
+alias updateapp="npm update -g && mise up --bump"
+alias cacheclear="pip cache purge && pnpm store prune && mise cache clear && uv cache clean"
 alias ccf="codecrafters"
 alias ccft="codecrafters test"
 alias ccfs="codecrafters submit"
 alias nvz="nvim leetcode.nvim"
 
-alias mountpdc="sshfs -o allow_other e0958630@soctf-pdc-009.d1.comp.nus.edu.sg:/nfs/home/e0958630/ ~/pdc"
-alias mountdebug="sshfs -odebug,sshfs_debug,loglevel=debug  e0958630@soctf-pdc-009.d1.comp.nus.edu.sg:/nfs/home/e0958630/ /home/ian/pdc"
+# alias mountpdc="sshfs -o allow_other e0958630@soctf-pdc-009.d1.comp.nus.edu.sg:/nfs/home/e0958630/ ~/pdc"
+# alias mountdebug="sshfs -odebug,sshfs_debug,loglevel=debug  e0958630@soctf-pdc-009.d1.comp.nus.edu.sg:/nfs/home/e0958630/ /home/ian/pdc"
 
 alias nvba="nvim ~/.bash_aliases && source ~/.bashrc"
 alias nvrc="nvim ~/.bashrc && source ~/.bashrc"
@@ -25,8 +25,8 @@ alias tm=tmux
 alias sumatra="SumatraPDF.exe"
 
 # CPP Flags for learning
-alias gcca="g++ -g3 -std=c++23 -Og -Wpedantic -Wall -Wextra -Wconversion -Werror -Wshadow -Wcast-align -Woverloaded-virtual -Wsign-conversion -Wformat=2 -Wnon-virtual-dtor -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -Wuseless-cast -Wdouble-promotion -Wfloat-equal -fno-omit-frame-pointer -fsanitize=address,undefined"
-alias gcct="g++ -g3 -std=c++23 -O3 -Wpedantic -Wall -Wextra -Wconversion -Werror -Wshadow -Wcast-align -Woverloaded-virtual -Wsign-conversion -Wformat=2 -Wnon-virtual-dtor -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -Wuseless-cast -Wdouble-promotion -Wfloat-equal -fno-omit-frame-pointer -fsanitize=thread,undefined"
+# alias gcca="g++ -g3 -std=c++23 -Og -Wpedantic -Wall -Wextra -Wconversion -Werror -Wshadow -Wcast-align -Woverloaded-virtual -Wsign-conversion -Wformat=2 -Wnon-virtual-dtor -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -Wuseless-cast -Wdouble-promotion -Wfloat-equal -fno-omit-frame-pointer -fsanitize=address,undefined"
+# alias gcct="g++ -g3 -std=c++23 -O3 -Wpedantic -Wall -Wextra -Wconversion -Werror -Wshadow -Wcast-align -Woverloaded-virtual -Wsign-conversion -Wformat=2 -Wnon-virtual-dtor -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -Wuseless-cast -Wdouble-promotion -Wfloat-equal -fno-omit-frame-pointer -fsanitize=thread,undefined"
 
 function fzfo() {
   local selection=$(fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}')

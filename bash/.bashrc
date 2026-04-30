@@ -31,7 +31,7 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
-if [ "${debian_chroot:-}" = "" ] && [ -r /etc/debian_chroot ]; then
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
@@ -45,7 +45,7 @@ esac
 # should be on the output of commands, not on the prompt
 #force_color_prompt=yes
 
-if [ "$force_color_prompt" != "" ]; then
+if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
         # We have color support; assume it's compliant with Ecma-48
         # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
@@ -87,7 +87,7 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alFh'
+alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -124,13 +124,20 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export EDITOR=nvim
 export BROWSER=~/.local/bin/firefox
 
+# Disable global pip installs, to avoid accidentally installing packages outside of virtualenvs
+export PIP_REQUIRE_VIRTUALENV=true
+
+# Eza ls replacement
 alias l='eza  --icons --group-directories-first -F'
-alias ls='eza  --icons --group-directories-first -F'
+alias ls='eza --icons --group-directories-first -F'
 alias ll='eza --icons --group-directories-first --git -lhF'
 alias la='eza --icons --group-directories-first --git -lahF'
 alias lt='eza --icons -F --tree --level=2'
+alias lT='eza --icons -F --tree'
 
 COPYTOOL="clip.exe"
+
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 
 # fzf file search (CTRL-T)
 export FZF_CTRL_T_OPTS="
@@ -173,24 +180,17 @@ function y() {
     rm -f -- "$tmp"
 }
 
-# nvim
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+# # for perf
+# export PATH="/usr/lib/linux-tools/5.15.0-122-generic/:$PATH"
+# export PATH="/usr/local/cuda/bin:$PATH"
 
-# for perf
-export PATH="/usr/lib/linux-tools/5.15.0-122-generic/:$PATH"
-export PATH="/usr/local/cuda/bin:$PATH"
+# # java (for jdtls)
+# export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+# export PATH="$JAVA_HOME/bin:$PATH"
 
-# java (for jdtls)
-export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-export PATH="$JAVA_HOME/bin:$PATH"
 . "$HOME/.cargo/env"
 
-# # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-export PNPM_HOME="/home/ian/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
 *":$PNPM_HOME:"*) ;;
 *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -204,9 +204,11 @@ esac
 ## To allow X11 forwarding from local to pe nodes
 # export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0.0
 
-eval "$(/home/ian/.local/bin/mise activate bash)"
+eval "$($HOME/.local/bin/mise activate bash)"
 eval "$(fzf --bash)"
 eval "$(uv generate-shell-completion bash)"
 eval "$(uvx --generate-shell-completion bash)"
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
+
+source <(typst completions bash)
