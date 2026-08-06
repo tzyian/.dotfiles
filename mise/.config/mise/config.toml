@@ -1,5 +1,5 @@
 [tools]
-### cli tools
+### tools
 lazygit = "latest"
 fzf = "latest"
 zoxide = "latest"
@@ -15,22 +15,26 @@ tokei = "latest"
 jq = "latest"
 cargo-binstall = "latest"
 tmux = "latest"
+herdr = "latest"
+lnav = "latest"
+neovim = "latest"
 
 ### UI
 starship = "latest"
 glow = "latest"
-neovim = "latest"
 
 ### Languages
 node = "lts"
 uv = "latest"
-elixir = "1.19"
-erlang = "28"
+elixir = "1.20"
+erlang = "29"
 rust = "latest"
 go = "latest"
 golangci-lint = "latest"
 typst = "latest"
 "npm:pnpm" = "latest"
+rtk = "latest"
+jless = "latest"
 
 ### Other stuff
 # visidata                # not included
