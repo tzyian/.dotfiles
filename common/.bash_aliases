@@ -1,6 +1,6 @@
 alias update="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y"
-alias updateapp="npm update -g && mise up --bump"
-alias cacheclear="pip cache purge && pnpm store prune && mise cache clear && uv cache clean"
+alias updateapp="mise up --bump"
+alias cacheclear="pnpm store prune && mise cache clear && uv cache clean"
 alias ccf="codecrafters"
 alias ccft="codecrafters test"
 alias ccfs="codecrafters submit"
@@ -17,6 +17,7 @@ alias nv="nvim"
 alias nvimdiff="nvim -d"
 alias lg=lazygit
 alias tm=tmux
+alias hr=herdr
 
 # alias lazyvim="NVIM_APPNAME=lazyvim nvim"
 # alias lazy="NVIM_APPNAME=lazyvim nvim"
