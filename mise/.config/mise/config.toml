@@ -1,3 +1,6 @@
+[settings]
+cache_prune_age = "7d"
+
 [tools]
 ### tools
 lazygit = "latest"
@@ -18,6 +21,7 @@ tmux = "latest"
 herdr = "latest"
 lnav = "latest"
 neovim = "latest"
+jless = "latest"
 
 ### UI
 starship = "latest"
@@ -32,9 +36,7 @@ rust = "latest"
 go = "latest"
 golangci-lint = "latest"
 typst = "latest"
-"npm:pnpm" = "latest"
-rtk = "latest"
-jless = "latest"
+tree-sitter = "latest"
 
 ### Other stuff
 # visidata                # not included
