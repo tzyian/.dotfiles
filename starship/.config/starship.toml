@@ -1,5 +1,6 @@
 add_newline = false
 format = '$time$all$directory$character'
+command_timeout = 1000
 
 [time]
 disabled = false
@@ -258,4 +259,3 @@ format = '\[[⏱ $duration]($style)\]'
 
 [username]
 format = '\[[$user]($style)\]'
-
