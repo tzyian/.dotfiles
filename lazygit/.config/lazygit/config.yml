@@ -3,4 +3,8 @@ git:
   diffRenderers:
     - command: difft --color=always
       type: extDiff
-  # - pager: delta --dark --paging=never -n -s
+      # - pager: delta --dark --paging=never -n -s
+os:
+  # if in neovim terminal, lazygit does not nest
+  edit: '[ -z "$NVIM" ] && ("${EDITOR:-nvim}" {{filename}}) || (nvim --server "$NVIM" --remote-send "<cmd>lua Lazygit_toggle()<CR><cmd>edit {{filename}}<CR>")'
+  editAtLine: '[ -z "$NVIM" ] && ("${EDITOR:-nvim}" +{{line}} {{filename}}) || (nvim --server "$NVIM" --remote-send "<cmd>lua Lazygit_toggle()<CR><cmd>edit +{{line}} {{filename}}<CR>")'
