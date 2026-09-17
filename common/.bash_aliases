@@ -4,7 +4,6 @@ alias cacheclear="pnpm store prune && mise cache clear && uv cache clean"
 alias ccf="codecrafters"
 alias ccft="codecrafters test"
 alias ccfs="codecrafters submit"
-alias nvz="nvim leetcode.nvim"
 
 # alias mountpdc="sshfs -o allow_other e0958630@soctf-pdc-009.d1.comp.nus.edu.sg:/nfs/home/e0958630/ ~/pdc"
 # alias mountdebug="sshfs -odebug,sshfs_debug,loglevel=debug  e0958630@soctf-pdc-009.d1.comp.nus.edu.sg:/nfs/home/e0958630/ /home/ian/pdc"
@@ -14,7 +13,10 @@ alias nvrc="nvim ~/.bashrc && source ~/.bashrc"
 alias srcb="source ~/.bashrc"
 
 alias nv="nvim"
+alias nvz="nvim leetcode.nvim"
+alias nvs="nvim session_last"
 alias nvimdiff="nvim -d"
+
 alias lg=lazygit
 alias tm=tmux
 alias hr=herdr
