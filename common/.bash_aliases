@@ -8,14 +8,17 @@ alias ccfs="codecrafters submit"
 # alias mountpdc="sshfs -o allow_other e0958630@soctf-pdc-009.d1.comp.nus.edu.sg:/nfs/home/e0958630/ ~/pdc"
 # alias mountdebug="sshfs -odebug,sshfs_debug,loglevel=debug  e0958630@soctf-pdc-009.d1.comp.nus.edu.sg:/nfs/home/e0958630/ /home/ian/pdc"
 
-alias nvba="nvim ~/.bash_aliases && source ~/.bashrc"
-alias nvrc="nvim ~/.bashrc && source ~/.bashrc"
 alias srcb="source ~/.bashrc"
+alias nvrc="nvim ~/.bashrc && source ~/.bashrc"
+alias nvba="nvim ~/.bash_aliases && source ~/.bashrc"
 
 alias nv="nvim"
+alias nvimdiff="nvim -d"
 alias nvz="nvim leetcode.nvim"
 alias nvs="nvim session_last"
-alias nvimdiff="nvim -d"
+alias nvsl="nvim session_last"
+alias nvsc="nvim session_curr"
+alias nvsc="nvim session_load"
 
 alias lg=lazygit
 alias tm=tmux
