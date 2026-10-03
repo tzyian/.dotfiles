@@ -21,7 +21,8 @@ tmux = "latest"
 herdr = "latest"
 lnav = "latest"
 neovim = "latest"
-jless = "latest"
+fx = "latest"             # json pager/jq alt
+tlrc = "latest"           # tldr
 
 ### UI
 starship = "latest"
@@ -40,11 +41,8 @@ tree-sitter = "latest"
 
 ### Other stuff
 # visidata                # not included
-# tealdeer = "latest"     # not included
 # delta = "latest"        # git diffs
 # duf = "latest"          # df
 # sd = "latest"           # sed
 # just = "latest"         # make
 # xh = "latest"           # curl
-# fx = "latest"           # json
-# yq = "latest"           # yaml
