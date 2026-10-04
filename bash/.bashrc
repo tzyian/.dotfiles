@@ -135,6 +135,7 @@ alias la='eza --icons --group-directories-first --git -lahF'
 alias lt='eza --icons -F --tree --level=2'
 alias lT='eza --icons -F --tree'
 
+# ===== FZF
 COPYTOOL="clip.exe"
 
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
@@ -144,21 +145,21 @@ export FZF_CTRL_T_OPTS="
     --walker file,dir
     --walker-skip .git,node_modules,target
     --preview 'if [ -d {} ]; then eza --icons -F --tree --level=2 --color=always {}; else bat --color=always --style=numbers --line-range=:500 {}; fi'
-    --bind \"ctrl-y:execute-silent(echo -n {} | "$COPYTOOL")+abort\"
+    --bind \"ctrl-y:execute-silent(echo -n {} | $COPYTOOL)+abort\"
     --bind 'ctrl-/:change-preview-window(hidden|)'
     --header 'CTRL-Y: Copy Path | CTRL-/: Toggle Preview'"
 
 # fzf command history (CTRL-R)
 export FZF_CTRL_R_OPTS="
     --preview=""
-    --bind \"ctrl-y:execute-silent(echo -n {} | "$COPYTOOL")+abort\"
+    --bind \"ctrl-y:execute-silent(echo -n {} | $COPYTOOL)+abort\"
     --header 'CTRL-Y: Copy Command'"
 
 # fzf cd (ALT-C)
 export FZF_ALT_C_OPTS="
     --walker-skip .git,node_modules,target
     --preview 'eza --icons -F --tree --level=2 --color=always {}'
-    --bind 'ctrl-y:execute-silent(echo -n {2..} | "$COPYTOOL")+abort'
+    --bind 'ctrl-y:execute-silent(echo -n {2..} | $COPYTOOL)+abort'
     --bind 'ctrl-/:change-preview-window(hidden|)'
     --header 'CTRL-Y: Copy Path | CTRL-/: Toggle Preview'"
 
@@ -180,6 +181,14 @@ function y() {
     rm -f -- "$tmp"
 }
 
+# fx config
+export FX_SHOW_SIZE=true
+export FX_LINE_NUMBERS=true
+export FX_COLLAPSED=true
+
+# herdr
+export SMART_SPLITS_HERDR_PASSTHROUGH_RE='^(agy)$'
+
 # # for perf
 # export PATH="/usr/lib/linux-tools/5.15.0-122-generic/:$PATH"
 # export PATH="/usr/local/cuda/bin:$PATH"
@@ -195,14 +204,6 @@ case ":$PATH:" in
 *":$PNPM_HOME:"*) ;;
 *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-
-## (Unneeded) To use VcXsrv, but breaks vim in pe nodes somehow
-# export DISPLAY=$(ip route list default | awk '{print $3}'):0
-# export LIBGL_ALWAYS_INDIRECT=1
-
-#### For xserver for UI forwarding. Note that these aren't necessary if wslg is sufficient
-## To allow X11 forwarding from local to pe nodes
-# export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0.0
 
 eval "$($HOME/.local/bin/mise activate bash)"
 eval "$(fzf --bash)"
