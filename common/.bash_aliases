@@ -48,8 +48,8 @@ function gc() {
   if [ $# -eq 0 ]; then
     echo "Usage: gc [-b] <branch-name>"
     echo "  -b    Create a new local branch (no tracking)"
-    echo "Available local and remote branches:"
-    git branch -a
+    echo "Available local branches:"
+    git branch
     return 0
   fi
 
@@ -75,6 +75,7 @@ function gc() {
   elif git show-ref --verify --quiet "refs/heads/$branch"; then
     git switch "$branch"
   else
+    echo "Tracking remote branch: origin/$branch"
     git switch -c "$branch" --track "origin/$branch"
   fi
 }
